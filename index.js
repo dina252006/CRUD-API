@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const Blog = require('./models/blogs.js'); 
 const app = express();
 
-// Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
@@ -11,7 +10,6 @@ app.get('/', (req, res) => {
     res.send("Welcome to the Blogging Platform API");
 });
 
-// Get all blog posts
 app.get('/blogs', async (req, res) => {
     try {
         const blogs = await Blog.find({});
@@ -21,7 +19,6 @@ app.get('/blogs', async (req, res) => {
     }
 });
 
-// Get a single blog post by ID
 app.get('/blogs/:id', async (req, res) => {
     try {
         const { id } = req.params;
@@ -37,7 +34,6 @@ app.get('/blogs/:id', async (req, res) => {
     }
 });
 
-// Create a new blog post
 app.post('/blogs', async (req, res) => {
     try {
         const blog = await Blog.create(req.body); 
@@ -47,7 +43,6 @@ app.post('/blogs', async (req, res) => {
     }
 });
 
-// Update a blog post by ID
 app.put('/blogs/:id', async (req, res) => {
     try {
         const { id } = req.params;
@@ -64,7 +59,6 @@ app.put('/blogs/:id', async (req, res) => {
     }
 });
 
-// Delete a blog post by ID
 app.delete('/blogs/:id', async (req, res) => {
     try {
         const { id } = req.params;
