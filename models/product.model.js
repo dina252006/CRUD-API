@@ -1,27 +1,20 @@
 const mongoose = require('mongoose');
 
-const ProductSchema = mongoose.Schema(
+const BlogSchema = mongoose.Schema(
     {
-        name: {
+        title: {
             type: String,
-            required: [true, "Please enter a product name"]
+            required: [true, "Please enter a blog title"]
         },
 
-        quantity: {
-            type: Number,
-            required: true,
-            default: 0,
-        },
-
-        price: {
-            type: Number,
-            required: true,
-            default: 0
-        },
-
-        image: {
+        body: {
             type: String,
-            required: false,
+            required: [true, "Please enter blog content"]
+        },
+
+        author: {
+            type: String,
+            required: true,
         },
     },
     {
@@ -29,7 +22,6 @@ const ProductSchema = mongoose.Schema(
     }
 )
 
+const Blog = mongoose.model('Blog', BlogSchema);
 
-const Product = mongoose.model('Product', ProductSchema);
-
-module.exports = Product;
+module.exports = Blog;
